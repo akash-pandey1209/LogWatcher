@@ -12,13 +12,14 @@ Usage:
 This project is very simple to use, you only have to clone this repository:
 
 install the dependencies (websocket & mock-fs):
-npm init -y
 
-npm install ws
+  npm init -y
+
+  npm install ws
 
 After that, run the server:
 
-npm server.js
+  npm server.js
 
 Finally, open your browser and go to the following url:
 
