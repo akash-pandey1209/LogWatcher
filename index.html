@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log Analyzer</title>
+    <style>
+        #log {
+            font-family: monospace;
+            white-space: pre;
+            background: white;
+            color: brown;
+            padding: 10px;
+            height: 90vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="log"></div>
+    <script>
+        const logDiv = document.getElementById('log');
+        const socket = new WebSocket('ws://localhost:8080');
+
+        socket.addEventListener('message', function (event) {
+            logDiv.textContent += event.data + '\n';
+            logDiv.scrollTop = logDiv.scrollHeight;
+        });
+
+        socket.addEventListener('open', function (event) {
+            console.log("Connected to the server");
+        });
+
+        socket.addEventListener('close', function (event) {
+            console.log("Disconnected from the server");
+        });
+
+        socket.addEventListener('error', function (event) {
+            console.error("WebSocket error observed:", event);
+        });
+    </script>
+</body>
+</html>
